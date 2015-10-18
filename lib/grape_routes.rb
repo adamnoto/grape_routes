@@ -8,6 +8,11 @@ module Grape::Routes
   class << self
     attr_accessor :all_routes
     attr_accessor :endpoints
+
+    def all_routes
+      parse!
+      @all_routes
+    end
   end
 
   # reparse everything

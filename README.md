@@ -1,8 +1,42 @@
 # Grape::Routes
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/grape_routes`. To experiment with that code, run `bin/console` for an interactive prompt.
+Allow you to refer to your Grape API routes as a function call.
 
-TODO: Delete this and the text above, and describe your gem
+```ruby
+class UseAPI < Grape::API
+  prefix 'v1'
+  format :json
+  version 'v1', using: :header, vendor: 'myapi'
+
+  resources :user do
+    desc "create user"
+    params do
+      optional :fullname, type: String
+    end
+    post :create do
+      # your code
+    end
+  end
+end
+```
+
+You can refer to your API path as follow:
+
+```ruby
+Grape::Routes.v1_user_create_post_path
+```
+
+You can refer to list of all available routes:
+
+```ruby
+Grape::Routes.all_routes.keys
+```
+
+You can re-parse, only if you add routes on the fly, probably?
+
+```ruby
+Grape::Routes.parse!
+```end
 
 ## Installation
 
@@ -20,22 +54,7 @@ Or install it yourself as:
 
     $ gem install grape_routes
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/grape_routes. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
-
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is proudly available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
