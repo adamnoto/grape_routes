@@ -46,6 +46,8 @@ Add this line to your application's Gemfile:
 gem 'grape_routes'
 ```
 
+## Installation
+
 And then execute:
 
     $ bundle
