@@ -36,7 +36,7 @@ You can re-parse, only if you add routes on the fly, probably?
 
 ```ruby
 Grape::Routes.parse!
-```end
+```
 
 ## Installation
 
@@ -45,8 +45,6 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'grape_routes'
 ```
-
-## Installation
 
 And then execute:
 
