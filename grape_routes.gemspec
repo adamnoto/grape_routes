@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Provide referable routing mechanism for your Grape API}
   spec.description   = %q{Provide referable routing mechanism for your Grape API}
-  spec.homepage      = "http://adampahlevi.com"
+  spec.homepage      = 'https://github.com/saveav/grape_routes'
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
