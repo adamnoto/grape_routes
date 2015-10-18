@@ -35,31 +35,29 @@ module Grape::Routes
       parsable_routes[route_path_name] = route
     end
 
-    self.all_routes = {} if self.all_routes.nil?
+    @all_routes = {} if @all_routes.nil?
 
     self.class_eval do
       parsable_routes.each do |route_path_name, route_object|
-        next if self.all_routes[route_path_name]
+        next if @all_routes[route_path_name]
 
         route_path = route_object.route_path.gsub(/(\(.+\))+/, '')
         if route_path_name =~ /:version_/i
           route_path_name = route_path_name.gsub(/:version_/i, '')
-          self.all_routes[route_path_name] = route_object
+          @all_routes[route_path_name] = route_object
           define_singleton_method route_path_name do |*args|
             fail 'Pass in version' if args.length != 1
             version = args[0]
             route_path.gsub(':version', version)
           end # define_singleton_method
         else
-          self.all_routes[route_path_name] = route_object
+          @all_routes[route_path_name] = route_object
           define_singleton_method route_path_name do
             route_path
           end
         end # if check
       end # each parsable_routes
     end # class_eval
-
-    self.all_routes = all_routes
   end # parse_endpoint
 
   def self.method_missing(method_name, *args, &block) 
